@@ -8,11 +8,12 @@ public class Node {
 
 	
 	double x,y; //default x,y.
+	boolean xBool= true; 
+	boolean yBool= true;
 	int CounterturnP1; //num of turns
 	int CounterturnP2; //num of turns
 	int lastTurnP1=0;	//last turn memo
 	int lastTurnP2=0;   //last turn memo
-	
 	int counterP1;		//path counter
 	int counterP2; 		//path counter
 	double  MinP1;		//value till point

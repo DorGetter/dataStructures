@@ -431,20 +431,37 @@ public class BestPath {
 	public void buildPathsCheap(String path, int i , int j ,ArrayList<String> paths)  {
 
 		if (i<mat.length-1 && j>0) {
+			matPrint(mat);
+			boolean xbol = mat[i][j-1].yBool;
+			boolean ybol = mat[i+1][j].xBool;
 			double a  = mat[i+1][j].getMinP1();
 			double a2 = mat[i+1][j].y; 
 			double b  = mat[i][j-1].MinP1;
 			double b2 = mat[i][j-1].x ;
 			double c = mat[i][j].getMinP1();
 
-			if (a+a2 == b+b2){   //a==b 
-				buildPathsCheap("1"+path, i+1, j, paths); 
+			if ((a+a2 == b+b2) && (xbol == true && ybol == true)){   //a==b 
+				mat[i+1][j].yBool = false;
+				buildPathsCheap("1"+path, i+1, j, paths);
+				mat[i][j-1].xBool = false;
 				buildPathsCheap("0" + new String(path), i, j-1, paths) ;
 			}
-			else if (c-b2 == b) {   
+			else if ((a+a2 == b+b2) && xbol == false && ybol == true ) {
+				matPrint(mat);
+				buildPathsCheap("0"+path, i+1, j, paths);
+			}
+			else if ((a+a2 == b+b2) && xbol == true && ybol == false ) {
+				matPrint(mat);
+				buildPathsCheap("1"+path, i, j-1, paths);
+			}
+			else if ((c-b2 == b)) {
+
+				matPrint(mat);
 				buildPathsCheap("0"+path, i, j-1, paths);
 			}
-			else if(c-a2 == a)   {
+			else if((c-a2 == a)) {
+
+				matPrint(mat);
 				buildPathsCheap("1"+path, i+1, j, paths);
 			}
 
@@ -562,7 +579,7 @@ public class BestPath {
 		for (int i = 0; i < m.length; i++) {
 			for (int j = 0; j < m.length; j++) {
 
-				System.out.print("P1: "+m[i][j].getMinP1()+", C1: "+m[i][j].getCounterturnP1()+" LT: "+m[i][j].getLastTurnP1()+" Tnum:"+m[i][j].getCounterturnP1()+"count"+m[i][j].getCounterP1()+"\t\t\t");
+				System.out.print("P1: "+m[i][j].getMinP1()+", C1: "+m[i][j].getCounterturnP1()+" LT: "+m[i][j].getLastTurnP1()+" Tnum:"+m[i][j].getCounterturnP1()+"count"+m[i][j].getCounterP1()+m[i][j].xBool+m[i][j].yBool+"\t\t\t");
 			}
 			System.out.println("\n");
 		}

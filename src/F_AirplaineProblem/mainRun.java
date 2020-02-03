@@ -34,7 +34,7 @@ public class mainRun {
 		BestPath BS = new BestPath(mat,teta);
 
 
-		//System.out.println(BS.getNumOfCheapestPaths());
+		System.out.println(BS.getNumOfCheapestPaths());
 
 		System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 
@@ -44,7 +44,7 @@ public class mainRun {
 		ArrayList<String> paths = new ArrayList<String>();
 
 		//paths = BS.getAllCheapestPaths();
-		paths = BS.getAllOptimalPaths();
+		//paths = BS.getAllOptimalPaths();
 		for (int i = 0; i < paths.size(); i++) {
 			System.out.println(i+" ["+paths.get(i)+"]");
 		}
